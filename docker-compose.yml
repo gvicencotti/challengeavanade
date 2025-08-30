@@ -1,8 +1,69 @@
 version: '3.8'
+
 services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
+
+  apigateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - "5208:80"
+    depends_on:
+      - authservice
+      - salesservice
+      - stockservice
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+
+  authservice:
+    build:
+      context: .
+      dockerfile: AuthService/Dockerfile
+    ports:
+      - "5017:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+
+  salesservice:
+    build:
+      context: .
+      dockerfile: SalesService/Dockerfile
+    ports:
+      - "5002:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=SalesDb;User=sa;Password=YourStrong!Passw0rd"
+    depends_on:
+      - sqlserver
+      - rabbitmq
+
+  stockservice:
+    build:
+      context: .
+      dockerfile: StockService/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=StockDb;User=sa;Password=YourStrong!Passw0rd"
+    depends_on:
+      - sqlserver
+      - rabbitmq
+
+volumes:
+  sqlserverdata:

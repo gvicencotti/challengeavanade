@@ -14,7 +14,7 @@ namespace SalesService.Messaging.Publisher
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost"
+                HostName = "rabbitmq"
             };
 
             _connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();

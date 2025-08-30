@@ -21,7 +21,7 @@ namespace SalesService.Messaging.Consumers
 
             _factory = new ConnectionFactory()
             {
-                HostName = "localhost"
+                HostName = "rabbitmq"
             };
         }
 

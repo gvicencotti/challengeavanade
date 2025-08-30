@@ -24,4 +24,7 @@
     <ProjectReference Include="..\Shared.Messaging.Events\Shared.Messaging.Events.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+  </ItemGroup>
+
 </Project>

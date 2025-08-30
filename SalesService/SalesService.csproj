@@ -19,8 +19,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
   </ItemGroup>
 
+
   <ItemGroup>
     <ProjectReference Include="..\Shared.Messaging.Events\Shared.Messaging.Events.csproj" />
   </ItemGroup>
+
 
 </Project>
