@@ -37,9 +37,9 @@ Os serviços tentam aplicar as migrações automaticamente ao iniciar. Se necess
 ### 5. Testar os endpoints
   Acesse o Swagger de cada serviço:
 
-  AuthService: http://localhost:5017/swagger
-  SalesService: http://localhost:5002/swagger
-  StockService: http://localhost:5001/swagger
+  - AuthService: http://localhost:5017/swagger
+  - SalesService: http://localhost:5002/swagger
+  - StockService: http://localhost:5001/swagger
 
 
 ## 🔑 Principais Endpoints & Exemplos de Uso
