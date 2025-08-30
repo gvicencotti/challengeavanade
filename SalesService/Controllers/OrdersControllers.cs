@@ -75,12 +75,18 @@ namespace SalesService.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public async Task<ActionResult<OrderDto>> CreateOrder(
             CreateOrderDto dto,
             [FromServices] IHttpClientFactory httpClientFactory)
         {
             var client = httpClientFactory.CreateClient("StockService");
+
+            if (Request.Headers.ContainsKey("Authorization"))
+            {
+                client.DefaultRequestHeaders.Remove("Authorization");
+                client.DefaultRequestHeaders.Add("Authorization", Request.Headers["Authorization"].ToString());
+            }
 
             foreach (var item in dto.Items)
             {
