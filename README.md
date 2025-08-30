@@ -54,7 +54,6 @@ Management UI: http://localhost:15672
 No SQL Server, crie os bancos de dados:
 
 ```bash
-CREATE DATABASE AuthDb;
 CREATE DATABASE SalesDb;
 CREATE DATABASE StockDb;
 ```
@@ -64,7 +63,6 @@ As connection strings já estão configuradas no appsettings.json de cada micros
 ### 5. Executar as migrações
 Rode os comandos abaixo para aplicar as tabelas:
 ```bash
-dotnet ef database update --project AuthService
 dotnet ef database update --project SalesService
 dotnet ef database update --project StockService
 ```
