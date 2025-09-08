@@ -1,4 +1,4 @@
-# Challenge Avanade 🚀  
+# E-Commerce Microservices  
 
 Este projeto é um **sistema de vendas e estoque** baseado em **arquitetura de microsserviços**, utilizando **.NET 9**, **RabbitMQ**, **SQL Server** e um **API Gateway com Ocelot**.  
 
